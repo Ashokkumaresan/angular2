@@ -1,0 +1,20 @@
+<p>
+  dashboard works! {{ username }} {{ firstname }}
+</p>
+<input type="submit" name="" (click)="userStatus()">
+<p [ngStyle]="{backgroundColor:getUserStatus()}" [ngClass]="{exits:userExists===true,notexits:userExists===false}">User Exists {{userExists}}</p>
+<div *ngFor="let de of details">
+		<p [innerHTML]="de.age"></p>
+		<p [innerHTML]="de.occupation"></p>
+	</div>
+	<app-customuser (userC)="onCreated($event)"></app-customuser>
+<app-login></app-login>
+
+
+<h1>
+  Existing Users
+</h1>
+<input type="button" name="" value="Change" (click)="onNameChange()">
+<app-userlist *ngFor="let user of userLists" [userl]="user" [emp]="user.empname">
+	<h1>{{user.empname}}</h1>
+</app-userlist>

@@ -1,0 +1,24 @@
+<h1>{{'First Component'}} {{ username }} {{ firstname }}</h1>
+
+<div>
+	<input type="text" name="" [value]="username" placeholder="UserName" />
+	<input type="text" name="" [value]="firstname"  placeholder="FirstName" />
+	<input type="text" name="" (input)="last_name($event)" placeholder="Lastname" />
+	<input type="text" [(ngModel)]="lastname"  />
+	<input type="submit" name="" [disabled]="iscomplete" (click)="onLogin()" value="Login" />
+	<p [innerHTML]="!iscomplete"></p>
+	<p *appUnless="isClicked">Hai{{fullname}}</p>
+	<!--<ng-template #noname>
+	<p>NO Name</p>
+	</ng-template> -->
+	<!--<div *ngFor="let de of details">
+		<p [innerHTML]="de.age"></p>
+		<p [innerHTML]="de.occupation"></p>
+	</div> -->
+
+	<p *ngFor="let name of nameList; let i=index">
+		{{name}}{{i}}
+	</p>
+
+
+</div>
