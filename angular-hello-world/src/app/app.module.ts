@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { Routes,RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -11,6 +11,11 @@ import { basichightlightdirective } from './basichighlight/basichighlight.direct
 import { BetterHightlightDirective } from './basichighlight/better-hightlight.directive';
 import { UnlessDirective } from './basichighlight/unless.directive';
 import { LoginService } from './Logging.service';
+
+const appRoutes:Routes=[
+{path:'login',component:LoginComponent},
+{path:'dashboard',component:DashboardComponent}
+];
 
 
 @NgModule({
@@ -25,7 +30,7 @@ import { LoginService } from './Logging.service';
     UnlessDirective
   ],
   imports: [
-    BrowserModule,FormsModule
+    BrowserModule,FormsModule,RouterModule.forRoot(appRoutes)
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
