@@ -21,8 +21,9 @@
 <!--<div app-dashboard></div>
 <app-dashboard></app-dashboard>
 <div class="app-dashboard"></div>-->
-<a routerLink="/">Home</a>
-<a routerLink="/login">Login</a>
-<a routerLink="/dashboard">Dashboard</a>
+<a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+<a routerLink="/login" routerLinkActive="active">Login</a>
+<a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+<button (click)="navigate()">Navigate</button>
   <router-outlet></router-outlet>
 
