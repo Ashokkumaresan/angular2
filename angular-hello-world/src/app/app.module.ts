@@ -11,9 +11,11 @@ import { basichightlightdirective } from './basichighlight/basichighlight.direct
 import { BetterHightlightDirective } from './basichighlight/better-hightlight.directive';
 import { UnlessDirective } from './basichighlight/unless.directive';
 import { LoginService } from './Logging.service';
+import { UsersComponent } from './users/users.component';
 
 const appRoutes:Routes=[
 {path:'login',component:LoginComponent},
+{path:'user/:id/:name',component:UsersComponent},
 {path:'dashboard',component:DashboardComponent}
 ];
 
@@ -27,7 +29,8 @@ const appRoutes:Routes=[
     CustomuserComponent,
     basichightlightdirective,
     BetterHightlightDirective,
-    UnlessDirective
+    UnlessDirective,
+    UsersComponent
   ],
   imports: [
     BrowserModule,FormsModule,RouterModule.forRoot(appRoutes)
