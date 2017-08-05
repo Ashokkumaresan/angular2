@@ -1,6 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Routes,RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -13,29 +11,22 @@ import { UnlessDirective } from './basichighlight/unless.directive';
 import { LoginService } from './Logging.service';
 import { UsersComponent } from './users/users.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { AppRoutingModule } from './app-routing.module';
 
-
-
-
-
+const appRoutes:Routes=[
+{path:'',component:DashboardComponent},
+{path:'login',component:LoginComponent},
+{path:'user/:id/:name',component:UsersComponent},
+{path:'dashboard',component:DashboardComponent},
+{path:'notfound',component:PagenotfoundComponent},
+{path:'**',redirectTo:'/notfound'}
+];
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    DashboardComponent,
-    UserlistComponent,
-    CustomuserComponent,
-    basichightlightdirective,
-    BetterHightlightDirective,
-    UnlessDirective,
-    UsersComponent,
-    PagenotfoundComponent
-  ],
-  imports: [
-    BrowserModule,FormsModule,AppRoutingModule
-  ],
-  providers: [LoginService],
-  bootstrap: [AppComponent]
+	imports:[
+		RouterModule.forRoot(appRoutes)
+	],
+	exports:[RouterModule]
+
 })
-export class AppModule { }
+export class AppRoutingModule{
+
+}
