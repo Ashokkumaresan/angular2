@@ -11,11 +11,13 @@ import { UnlessDirective } from './basichighlight/unless.directive';
 import { LoginService } from './Logging.service';
 import { UsersComponent } from './users/users.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { AppGuard } from './app.guard.service';
+import { CanDeactivateGuard } from './deactivate.guard.service';
 
 const appRoutes:Routes=[
 {path:'',component:DashboardComponent},
-{path:'login',component:LoginComponent},
-{path:'user/:id/:name',component:UsersComponent},
+{path:'login',component:LoginComponent, canDeactivate:[CanDeactivateGuard]},
+{path:'user/:id/:name',canActivate:[AppGuard],component:UsersComponent},
 {path:'dashboard',component:DashboardComponent},
 {path:'notfound',component:PagenotfoundComponent},
 {path:'**',redirectTo:'/notfound'}

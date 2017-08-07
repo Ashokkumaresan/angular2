@@ -14,9 +14,9 @@ import { LoginService } from './Logging.service';
 import { UsersComponent } from './users/users.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AppRoutingModule } from './app-routing.module';
-
-
-
+import { AppGuard } from './app.guard.service';
+import { AuthService } from './auth.service';
+import { CanDeactivateGuard } from './deactivate.guard.service';
 
 
 @NgModule({
@@ -35,7 +35,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,FormsModule,AppRoutingModule
   ],
-  providers: [LoginService],
+  providers: [LoginService,AppGuard,AuthService,CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
