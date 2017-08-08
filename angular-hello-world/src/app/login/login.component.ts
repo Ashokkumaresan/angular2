@@ -1,8 +1,10 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input,OnInit } from '@angular/core';
 import { LoginService } from '../Logging.service';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 import { CanComponentDeactivate } from '../deactivate.guard.service';
+import 'rxjs/Rx';
 
 @Component({
 	selector:'app-login',
@@ -15,7 +17,7 @@ import { CanComponentDeactivate } from '../deactivate.guard.service';
 	`]
 	
 })
-export class LoginComponent implements CanComponentDeactivate{
+export class LoginComponent implements CanComponentDeactivate, OnInit{
 	username:string="ashokkumaresan";
 	firstname:string="KUmaresan";
 	iscomplete:boolean=true;
@@ -39,7 +41,44 @@ onLogin(){
 	this.log.showStatus.emit("Hello World");
 	this.authservice.Login();
 }
+ngOnInit(){
+	const myNumbers=Observable.interval(1000);
+	myNumbers.subscribe(
+		(num:number)=>{
+			console.log(num);
+		}
+		);
 
+	const myObservable=Observable.create((observer:Observer<string>)=>{
+		setTimeout(function(){
+			observer.next("First Observer");
+		},2000);
+		setTimeout(()=>{
+			observer.next("Second Observer");
+		},4000);
+		setTimeout(()=>{
+			observer.next("Error in Observer");
+		},5000);
+		setTimeout(()=>{
+			observer.complete()
+		},6000);
+		setTimeout(()=>{
+			observer.next("Third Observer");
+		},8000);
+	});
+
+	myObservable.subscribe(
+		(data:string)=>{
+			console.log(data);
+		},
+		(error:string)=>{
+			console.log(error);
+		},
+		()=>{
+			console.log("Observer Completed");
+		}
+		);
+}
 last_name(event:Event){
 this.fullname=(<HTMLInputElement>event.target).value + this.lastname;
 }

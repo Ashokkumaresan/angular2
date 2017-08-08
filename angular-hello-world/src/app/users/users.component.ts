@@ -1,28 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Params } from '@angular/router';
+import { ActivatedRoute,Params,Data } from '@angular/router';
+import { UserService } from './user.service';
 
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'] 
 })
 export class UsersComponent implements OnInit {
 	user: {id: number,name: string};
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route:ActivatedRoute,private uservice:UserService) { }
 
   ngOnInit() {
-  	this.user={
-  		id:this.route.snapshot.params['id'],
-  		name:this.route.snapshot.params['name']
-  	};
+ /*var res= this.uservice.onUserLoad();
+      this.user={
+      id:res['id'],
+      name:res['name']
+    }; */
 
-  	this.route.params.subscribe(
-  		(params:Params)=>{
-  			this.user.id=params['id'];
-  			this.user.name=params['name'];
-  		}
-  		);
+    this.route.data.subscribe(
+      (data:Data)=>{
+        this.user=data['uresolve'];
+      }
+      );
+
+
   }
+
+
 
 }

@@ -12,6 +12,8 @@ import { BetterHightlightDirective } from './basichighlight/better-hightlight.di
 import { UnlessDirective } from './basichighlight/unless.directive';
 import { LoginService } from './Logging.service';
 import { UsersComponent } from './users/users.component';
+import { UserResolver } from './users/users.resolver.service';
+import { UserService } from './users/user.service';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppGuard } from './app.guard.service';
@@ -35,7 +37,7 @@ import { CanDeactivateGuard } from './deactivate.guard.service';
   imports: [
     BrowserModule,FormsModule,AppRoutingModule
   ],
-  providers: [LoginService,AppGuard,AuthService,CanDeactivateGuard],
+  providers: [LoginService,AppGuard,AuthService,CanDeactivateGuard,UserService,UserResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
