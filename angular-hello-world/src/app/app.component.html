@@ -25,6 +25,8 @@
 <a routerLink="/login" routerLinkActive="active">Login</a>
 <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
 <a [routerLink]="['/user',1,'trisha']" [queryParams]="{allowedit:1}" fragment="location">Users</a>
+<a [routerLink]="['/form']">Form</a>
+<a [routerLink]="['/reactive']">Reactive</a>
 <button (click)="navigate()">Navigate</button>
   <router-outlet></router-outlet>
 

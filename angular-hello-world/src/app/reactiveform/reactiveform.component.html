@@ -1,0 +1,35 @@
+<h4>Reactive Form</h4>
+
+<form [formGroup]="signupform" (ngSubmit)="onSubmit()">
+	<div formGroupName="userData">
+<div>
+	<input type="text" placeholder="Name" name="empname" formControlName="username" />
+	<span *ngIf="!signupform.get('userData.username').valid && signupform.get('userData.username').touched">Enter Emp name</span>
+</div>
+<div>
+	<input type="text" placeholder="Department" name="empdepartment" formControlName="department"/>
+	<span *ngIf="!signupform.get('userData.department').valid && signupform.get('userData.department').touched">Enter Department name</span>
+</div>
+</div>
+<span>Invalid Group Data</span>
+<div>
+	<select name="experiance" formControlName="experiance">
+		<option value="one">1</option>
+		<option value="two">2</option>
+		<option value="three">3</option>
+		<option value="four">4</option>
+	</select>
+</div>
+<div *ngFor="let op of answer">
+	<input type="radio" name="answer" formControlName="answer" [value]="op">{{op}}
+</div>
+<div>
+	<textarea rows="2" formControlName="reply" name="question">
+	</textarea>
+	<span>Reply:{{reply}}</span>
+</div>
+<div>
+	<input type="button" value="Suggest" (click)="suggest()"/>
+	<input type="submit" value="submit" [disabled]="!empform.valid" />
+</div>
+</form>

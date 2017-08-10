@@ -15,12 +15,16 @@ import { UserService } from './users/user.service';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AppGuard } from './app.guard.service';
 import { CanDeactivateGuard } from './deactivate.guard.service';
+import { EmpformComponent } from './empform/empform.component';
+import { ReactiveformComponent } from './reactiveform/reactiveform.component';
 
 const appRoutes:Routes=[
 {path:'',component:DashboardComponent},
 {path:'login',component:LoginComponent, canDeactivate:[CanDeactivateGuard]},
 {path:'user/:id/:name',canActivate:[AppGuard],component:UsersComponent,resolve:{uresolve:UserResolver}},
 {path:'dashboard',component:DashboardComponent},
+{path:'form',component:EmpformComponent},
+{path:'reactive',component:ReactiveformComponent},
 {path:'notfound',component:PagenotfoundComponent,data:{message:'404! Page not found error'}},
 {path:'**',redirectTo:'/notfound'}
 ];

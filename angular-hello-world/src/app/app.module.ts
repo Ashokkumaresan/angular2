@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Routes,RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +20,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppGuard } from './app.guard.service';
 import { AuthService } from './auth.service';
 import { CanDeactivateGuard } from './deactivate.guard.service';
+import { ActivateUser } from './activate.service';
+import { EmpformComponent } from './empform/empform.component';
+import { ReactiveformComponent } from './reactiveform/reactiveform.component';
 
 
 @NgModule({
@@ -32,12 +36,14 @@ import { CanDeactivateGuard } from './deactivate.guard.service';
     BetterHightlightDirective,
     UnlessDirective,
     UsersComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    EmpformComponent,
+    ReactiveformComponent
   ],
   imports: [
-    BrowserModule,FormsModule,AppRoutingModule
+    BrowserModule,FormsModule,AppRoutingModule,ReactiveFormsModule
   ],
-  providers: [LoginService,AppGuard,AuthService,CanDeactivateGuard,UserService,UserResolver],
+  providers: [LoginService,AppGuard,AuthService,CanDeactivateGuard,UserService,UserResolver,ActivateUser],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,40 @@
+<form (ngSubmit)="onSubmit(empform)" #empform="ngForm">
+	<div ngModelGroup="empData" #empDataVal="ngModelGroup">
+<div>
+	<input type="text" placeholder="Name" name="empname" ngModel required #emp="ngModel" />
+	<span *ngIf="!emp.valid && emp.touched">Enter Emp name</span>
+</div>
+<div>
+	<input type="text" placeholder="Department" name="empdepartment" #dep="ngModel" ngModel required />
+	<span *ngIf="!dep.valid && dep.touched">Enter Department name</span>
+</div>
+</div>
+<span *ngIf="!empDataVal.valid && empDataVal.touched">Invalid Group Data</span>
+<div>
+	<select name="experiance" [ngModel]="defaultexp" required >
+		<option value="one">1</option>
+		<option value="two">2</option>
+		<option value="three">3</option>
+		<option value="four">4</option>
+	</select>
+</div>
+<div *ngFor="let op of answer">
+	<input type="radio" name="answer" [ngModel]="'No'" [value]="op" required >{{op}}
+</div>
+<div>
+	<textarea rows="2" [(ngModel)]="reply" name="question">
+	</textarea>
+	<span>Reply:{{reply}}</span>
+</div>
+<div>
+	<input type="button" value="Suggest" (click)="suggest()"/>
+	<input type="submit" value="submit" [disabled]="!empform.valid" />
+</div>
+</form>
+
+<div>
+	EmpName:{{empuser.name}}
+	Department:{{empuser.dep}}
+	Answer:{{empuser.ans}}
+	Comments:{{empuser.comment}}
+</div>

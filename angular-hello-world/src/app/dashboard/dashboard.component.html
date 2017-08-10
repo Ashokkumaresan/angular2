@@ -3,11 +3,13 @@
 </p>
 <input type="submit" name="" (click)="userStatus()">
 <p [ngStyle]="{backgroundColor:getUserStatus()}" [ngClass]="{exits:userExists===true,notexits:userExists===false}">User Exists {{userExists}}</p>
+	<div>Subject Example: {{sub_username}}</div>
 <div *ngFor="let de of details">
 		<p [innerHTML]="de.age"></p>
 		<p [innerHTML]="de.occupation"></p>
 	</div>
 	<app-customuser (userC)="onCreated($event)"></app-customuser>
+
 <app-login></app-login>
 
 

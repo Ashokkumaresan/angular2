@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, Input, OnChanges, SimpleChanges,DoCheck,OnDestroy } from '@angular/core';
 import { LoginService } from '../Logging.service';
+import { ActivateUser } from '../activate.service';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class DashboardComponent implements OnInit ,OnChanges, DoCheck,OnDestroy{
 	firstname:string="Ashok";
 	userExists:boolean=false;	
 	userLists=[{empname:"Trisha",country:"India"},{empname:"Ashok",country:"India"}];
-  constructor(private log:LoginService) { 
+  sub_username:string="Not Activated";
+  constructor(private log:LoginService,private useractivate:ActivateUser) { 
   	this.userExists=Math.random() > 0.5 ? true:false;
 
         this.log.showStatus.subscribe(
@@ -21,6 +23,16 @@ export class DashboardComponent implements OnInit ,OnChanges, DoCheck,OnDestroy{
         alert("Injectable service "+status);
       }
       );
+
+     this.useractivate.userActivated.subscribe(
+       (uname:string)=>{
+         if(uname=="ashokkumaresan")
+             this.sub_username="Activated";
+           else
+             this.sub_username="Not Activated";
+
+       }
+     )   
   }
 
   ngOnInit() {
