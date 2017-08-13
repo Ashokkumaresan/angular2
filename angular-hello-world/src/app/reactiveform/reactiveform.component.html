@@ -4,11 +4,17 @@
 	<div formGroupName="userData">
 <div>
 	<input type="text" placeholder="Name" name="empname" formControlName="username" />
-	<span *ngIf="!signupform.get('userData.username').valid && signupform.get('userData.username').touched">Enter Emp name</span>
+	<span *ngIf="!signupform.get('userData.username').valid && signupform.get('userData.username').touched">
+			<span *ngIf="signupform.get('userData.username').errors['Invalid length']">Length Exceeds </span>
+			<span *ngIf="signupform.get('userData.username').errors['required']">Employee Name required </span>
+	</span>
 </div>
 <div>
 	<input type="text" placeholder="Department" name="empdepartment" formControlName="department"/>
-	<span *ngIf="!signupform.get('userData.department').valid && signupform.get('userData.department').touched">Enter Department name</span>
+	<span *ngIf="!signupform.get('userData.department').valid && signupform.get('userData.department').touched">
+		<span *ngIf="signupform.get('userData.department').errors['InvalidDepartment']">Invalid Name</span>
+		<span *ngIf="signupform.get('userData.department').errors['required']">Department Name required </span>
+		</span>
 </div>
 </div>
 <span>Invalid Group Data</span>
@@ -24,12 +30,12 @@
 	<input type="radio" name="answer" formControlName="answer" [value]="op">{{op}}
 </div>
 <div>
-	<textarea rows="2" formControlName="reply" name="question">
+	<textarea rows="2" formControlName="reply" name="reply">
 	</textarea>
-	<span>Reply:{{reply}}</span>
+<span>Reply:{{signupform.get('reply').value}}</span>
 </div>
 <div>
 	<input type="button" value="Suggest" (click)="suggest()"/>
-	<input type="submit" value="submit" [disabled]="!empform.valid" />
+	<input type="submit" value="submit" [disabled]="!signupform.valid"/>
 </div>
 </form>
