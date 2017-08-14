@@ -23,6 +23,8 @@ import { CanDeactivateGuard } from './deactivate.guard.service';
 import { ActivateUser } from './activate.service';
 import { EmpformComponent } from './empform/empform.component';
 import { ReactiveformComponent } from './reactiveform/reactiveform.component';
+import { Arealength } from './app.pipe';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { ReactiveformComponent } from './reactiveform/reactiveform.component';
     UsersComponent,
     PagenotfoundComponent,
     EmpformComponent,
-    ReactiveformComponent
+    ReactiveformComponent,
+    Arealength,
+    FilterPipe
   ],
   imports: [
     BrowserModule,FormsModule,AppRoutingModule,ReactiveFormsModule

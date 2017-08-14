@@ -1,5 +1,5 @@
 <h4>Reactive Form</h4>
-
+{{appstatus | async}}
 <form [formGroup]="signupform" (ngSubmit)="onSubmit()">
 	<div formGroupName="userData">
 <div>
@@ -32,10 +32,15 @@
 <div>
 	<textarea rows="2" formControlName="reply" name="reply">
 	</textarea>
-<span>Reply:{{signupform.get('reply').value}}</span>
+<span>Reply:{{signupform.get('reply').value | uppercase}} Length:{{signupform.get('reply').value | arealen:20:5}}</span>
 </div>
 <div>
 	<input type="button" value="Suggest" (click)="suggest()"/>
 	<input type="submit" value="submit" [disabled]="!signupform.valid"/>
 </div>
 </form>
+<input type="text" [(ngModel)]="numfilter" />
+<ul style="list-style:none">
+	<li *ngFor="let n of randamnum | filter:numfilter">{{n}}</li>
+
+</ul>

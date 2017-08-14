@@ -9,7 +9,13 @@ import { FormGroup,FormControl,Validators } from '@angular/forms';
 })
 export class ReactiveformComponent implements OnInit {
 answer=['Yes','No'];
+randamnum=[23,45,65,34,67,87,97,75,54,39,78,23,48,453,786];
 signupform:FormGroup;
+appstatus=new Promise((resolve,reject)=>{
+  setTimeout(()=>{
+    resolve("Active");
+  },2000);
+});
   constructor() { }
 
   ngOnInit() {
