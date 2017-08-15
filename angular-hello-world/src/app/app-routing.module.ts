@@ -17,6 +17,7 @@ import { AppGuard } from './app.guard.service';
 import { CanDeactivateGuard } from './deactivate.guard.service';
 import { EmpformComponent } from './empform/empform.component';
 import { ReactiveformComponent } from './reactiveform/reactiveform.component';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 const appRoutes:Routes=[
 {path:'',component:DashboardComponent},
@@ -25,6 +26,7 @@ const appRoutes:Routes=[
 {path:'dashboard',component:DashboardComponent},
 {path:'form',component:EmpformComponent},
 {path:'reactive',component:ReactiveformComponent},
+{path:'authenticate',component:AuthenticateComponent},
 {path:'notfound',component:PagenotfoundComponent,data:{message:'404! Page not found error'}},
 {path:'**',redirectTo:'/notfound'}
 ];

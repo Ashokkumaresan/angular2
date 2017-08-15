@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Routes,RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -21,11 +22,13 @@ import { AppGuard } from './app.guard.service';
 import { AuthService } from './auth.service';
 import { CanDeactivateGuard } from './deactivate.guard.service';
 import { ActivateUser } from './activate.service';
+import { formService } from './form.service';
 import { EmpformComponent } from './empform/empform.component';
 import { ReactiveformComponent } from './reactiveform/reactiveform.component';
 import { Arealength } from './app.pipe';
 import { FilterPipe } from './filter.pipe';
-
+import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { AuthFire } from './authenticate/authfire.service';
 
 @NgModule({
   declarations: [
@@ -42,12 +45,13 @@ import { FilterPipe } from './filter.pipe';
     EmpformComponent,
     ReactiveformComponent,
     Arealength,
-    FilterPipe
+    FilterPipe,
+    AuthenticateComponent
   ],
   imports: [
-    BrowserModule,FormsModule,AppRoutingModule,ReactiveFormsModule
+    BrowserModule,FormsModule,HttpModule,AppRoutingModule,ReactiveFormsModule
   ],
-  providers: [LoginService,AppGuard,AuthService,CanDeactivateGuard,UserService,UserResolver,ActivateUser],
+  providers: [LoginService,AppGuard,AuthService,CanDeactivateGuard,UserService,UserResolver,ActivateUser,formService,AuthFire],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

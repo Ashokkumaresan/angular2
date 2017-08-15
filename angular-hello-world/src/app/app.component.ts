@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { Router,ActivatedRoute,Params } from '@angular/router';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -13,7 +14,10 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit(){
-
+      firebase.initializeApp({
+        apiKey: "AIzaSyAw2NwywZdSjIEwh2Sq1WMGwnlEfqSWCug",
+   authDomain: "angular2-8bdc0.firebaseapp.com"
+ });
   }
   navigate(){
   	//this.route.navigate(['/user/1/ashok'],{relativeTo:this.act_route});

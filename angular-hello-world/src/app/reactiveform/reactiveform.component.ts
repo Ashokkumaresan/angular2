@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
+import { Response } from '@angular/http';
+import { formService } from '../form.service';
 
 @Component({
   selector: 'app-reactiveform',
@@ -9,6 +11,8 @@ import { FormGroup,FormControl,Validators } from '@angular/forms';
 })
 export class ReactiveformComponent implements OnInit {
 answer=['Yes','No'];
+appname=this.formService.getSingleData();
+empList=[];
 randamnum=[23,45,65,34,67,87,97,75,54,39,78,23,48,453,786];
 signupform:FormGroup;
 appstatus=new Promise((resolve,reject)=>{
@@ -16,9 +20,10 @@ appstatus=new Promise((resolve,reject)=>{
     resolve("Active");
   },2000);
 });
-  constructor() { }
+  constructor(private formService:formService) { }
 
   ngOnInit() {
+
   	this.signupform=new FormGroup({
   		'userData':new FormGroup({
   		'username':new FormControl("",[Validators.required,this.limitLength.bind(this)]),
@@ -33,11 +38,32 @@ appstatus=new Promise((resolve,reject)=>{
       (value)=>{
         console.log(value);
       }
-    )
+    );
   }
 
   onSubmit(){
   	console.log(this.signupform);
+    var emp={
+      Employeename:this.signupform.get('userData.username').value,
+      Department:this.signupform.get('userData.department').value,
+      Experiance:this.signupform.get('experiance').value,
+      Active:this.signupform.get('answer').value,
+      Reply:this.signupform.get('reply').value
+    }
+    this.empList.push(emp);
+    this.formService.sendData(this.empList).subscribe(
+      (response)=>{console.log(response)},
+      (error)=>{console.log(error)}
+    );
+  }
+
+  getEmpDetails(){
+    this.formService.getData().subscribe(
+      (empresponse:any)=>{
+        console.log(empresponse);
+      },
+      (error)=>console.log(error)
+    );
   }
 
   limitLength(control:FormControl):{[s:string]:boolean} {
